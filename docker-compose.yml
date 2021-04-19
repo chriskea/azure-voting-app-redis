@@ -1,16 +1,11 @@
-version: '3'
-services:
-  azure-vote-back:
-    image: redis
-    container_name: azure-vote-back
-    ports:
-        - "6379:6379"
+version: "3.6"
 
-  azure-vote-front:
-    build: ./azure-vote
-    image: azure-vote-front
-    container_name: azure-vote-front
+services:
+  so1:
+    image: ${SPLUNK_IMAGE:-splunk/splunk:8.1.2}
+    container_name: so1
     environment:
-      REDIS: azure-vote-back
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD
     ports:
-        - "8000:80"
+      - 8000:8000
